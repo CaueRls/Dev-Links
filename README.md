@@ -1,73 +1,91 @@
-# React + TypeScript + Vite
+# DevLinks
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicação **DevLinks** desenvolvida com **React + TypeScript + Vite**, inspirada em páginas de agregação de links (estilo Linktree). O projeto exibe perfil, lista de links externos e redes sociais, com suporte a **tema claro/escuro**, persistência da preferência e layout responsivo.
 
-Currently, two official plugins are available:
+## Tecnologias e linguagens utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Linguagens
+- **TypeScript** (`.ts`, `.tsx`) — tipagem estática e implementação dos componentes/lógicas.
+- **JavaScript/ESM** — base de configuração e tooling do ecossistema.
+- **HTML** — estrutura da aplicação (`index.html`).
+- **CSS** — estilos globais, tokens de tema e ajustes complementares (`src/index.css`, `src/App.css`).
 
-## React Compiler
+### Frameworks e bibliotecas
+- **React 19** — construção da interface com componentes funcionais.
+- **React DOM** — renderização no navegador.
+- **Vite 7** — ambiente de desenvolvimento, build e preview.
+- **Tailwind CSS 4** (`tailwindcss`, `@tailwindcss/vite`) — estilização utilitária integrada ao Vite.
+- **Phosphor Icons** (`@phosphor-icons/react`) — ícones do controle de alternância de tema.
+- **React Icons / Ionicons** (`react-icons`, conjunto `io5`) — ícones das redes sociais.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Ferramentas de qualidade e tipagem
+- **TypeScript** — checagem de tipos (`tsc -b` no build).
+- **ESLint** — análise estática de código (`eslint`, `@eslint/js`, `typescript-eslint`, plugins para React Hooks e React Refresh).
 
-## Expanding the ESLint configuration
+### APIs/recursos do navegador
+- **localStorage** — persistência da preferência de tema (`light`/`dark`).
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Funcionalidades atuais
+- Exibição de perfil (avatar, nome e identificador/contato).
+- Lista de links externos em botões (abertura em nova aba com `rel="noopener noreferrer"`).
+- Seção de redes sociais com ícones.
+- Alternância entre **modo claro e escuro** com controle acessível.
+- Persistência e restauração do tema via `localStorage`.
+- Aplicação de tema no elemento raiz (`data-theme`) e tokens CSS centralizados.
+- Uso de imagens de fundo/avatar por tema e adaptação responsiva (mobile/desktop).
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Estrutura do projeto
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```text
+src/
+├── assets/              # Imagens e arquivos estáticos
+├── components/
+│   ├── features/        # Componentes de funcionalidades (Profile, LinkButton, SocialLinks)
+│   └── ui/              # Componentes de UI reutilizáveis (ThemeToggle)
+├── data/                # Dados e tipos (perfil, links, redes sociais)
+├── hooks/               # Hooks personalizados (useTheme)
+├── App.tsx              # Composição da página
+├── App.css              # Ajustes específicos
+├── index.css            # Estilos globais, tokens e Tailwind
+└── main.tsx             # Ponto de entrada
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Como executar
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Pré-requisitos
+- **Node.js** (recomendado: versão compatível com as dependências do Vite em uso; o projeto foi validado em ambiente com Node 22.x, podendo haver avisos de engine dependendo da versão exata).
+- **npm**
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Instalação
+```bash
+npm install
 ```
+
+### Ambiente de desenvolvimento
+```bash
+npm run dev
+```
+
+### Build de produção
+```bash
+npm run build
+```
+
+### Preview do build
+```bash
+npm run preview
+```
+
+### Lint
+```bash
+npm run lint
+```
+
+> No Windows/PowerShell, se houver restrição de execução de scripts (`npm.ps1`), utilize `cmd /c npm run <script>`.
+
+## Observações
+- Parte dos conteúdos (textos, URLs e medidas visuais) ainda é **provisória** e deve ser ajustada conforme o Figma/Style Guide e os destinos oficiais do projeto.
+- As imagens de fundo e avatar são alternadas conforme o tema selecionado.
+
+## Repositório
+- https://github.com/CaueRls/Dev-Links
