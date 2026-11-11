@@ -1,0 +1,9 @@
+/* Estilos específicos adicionais podem ser centralizados aqui quando necessário.
+   Layout principal e componentes utilizam Tailwind CSS + tokens em index.css. */
+
+@media (min-width: 700px) {
+  .app-shell {
+    background-image: var(--bg-desktop) !important;
+  }
+}
+
